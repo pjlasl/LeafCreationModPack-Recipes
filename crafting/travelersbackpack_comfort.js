@@ -1,3 +1,13 @@
+onEvent('item.tags', event => {
+
+    var colors = ['white','orange','magenta','light_blue','yellow','lime','pink','gray','light_gray','cyan','purple','blue','brown','green','red','black'];
+
+    colors.forEach(function(color, index) {        
+        event.get('lcmp:comforts/sleepingbags').add('comforts:sleeping_bag_' + color);
+    })
+    
+})
+
 onEvent('recipes', event => {
 
     var modIds = ['travelersbackpack'];
@@ -15,8 +25,6 @@ onEvent('recipes', event => {
         if (!IsModLoaded(mod)) return;
     })    
 
-    var colors = ['white','orange','magenta','light_blue','yellow','lime','pink','gray','light_gray','cyan','purple','blue','brown','green','red','black'];
-              
     const createBackpack = (sleepingBag) => {
         event.shaped('travelersbackpack:standard', [
             'XBX',
@@ -33,10 +41,7 @@ onEvent('recipes', event => {
 
     if(Platform.isLoaded('comforts')) {
         console.info('Creating Traveler backpack using Comforts sleeping bags')
-        colors.forEach(function(color, index) {        
-            var sleepingBag = 'comforts:sleeping_bag_' + color;
-            createBackpack(sleepingBag)
-        })
+        createBackpack('#lcmp:comforts/sleepingbags')
     }
 
     if(Platform.isLoaded('upgrade_aquatic')) {
