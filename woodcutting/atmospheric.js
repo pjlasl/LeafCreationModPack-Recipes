@@ -1,4 +1,8 @@
+// priority: 1
+
 onEvent('recipes', event => {
+
+    console.log('Adding Atmospheric Woodcutting Recipes');
     
     var modId = 'atmospheric';
     
