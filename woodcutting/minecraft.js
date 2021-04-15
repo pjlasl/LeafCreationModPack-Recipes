@@ -130,9 +130,7 @@ onEvent('recipes', event => {
 
                 if (suffix.name == 'planks' && !item.craftWithPlanks) {
                     return;
-                }
-
-                console.info('item to craft: ' + i);
+                }                
 
                 multiCut(woodType, 'quark:' + i, c);
             })
