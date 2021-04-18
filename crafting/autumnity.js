@@ -20,7 +20,7 @@ onEvent('recipes', event => {
     // Craft a crafting table from maple planks
     event.shaped('minecraft:crafting_table', [
         'PP',
-        'pp'
+        'PP'
     ], {
         P: 'autumnity:maple_planks'
     })    

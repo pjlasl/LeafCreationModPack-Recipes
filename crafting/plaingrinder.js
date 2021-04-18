@@ -26,19 +26,34 @@ onEvent('recipes', event => {
         smeltDust(dust, outputs[index]);
     })
 
-    if (Platform.isLoaded('desolation')) {
-        smeltDust('desolation:activatedcharcoal','minecraft:charcoal');
-
+    const grindOre = (input, output, count) => {
         event.custom({
             'type': 'plaingrinder:grinder',
             'input': {
-                'item': 'minecraft:charcoal'
+                'item': input
             },
             'result': {
-                'item': 'desolation:charcoal_bit',
-                'count': 4
+                'item': output,
+                'count': count
             }
-        })   
+        })  
+    }
+
+    if (Platform.isLoaded('rawore')) {
+        grindOre('rawore:raw_iron','plaingrinder:dust_iron', 2);
+        grindOre('rawore:raw_iron_block','plaingrinder:dust_iron', 18);
+        grindOre('rawore:raw_gold','plaingrinder:dust_gold', 2);
+        grindOre('rawore:raw_gold_block','plaingrinder:dust_gold', 18);
+    }
+
+    if (Platform.isLoaded('desolation')) {
+        smeltDust('desolation:activatedcharcoal','minecraft:charcoal');
+        grindOre('minecraft:charcoal','desolation:charcoal_bit',4)        
+    }
+
+    if (Platform.isLoaded('create')) {
+        grindOre('minecraft:wheat','create:wheat_flour',1);
+        grindOre('minecraft:netherrack','create:cinder_flour',2);        
     }
 
 
